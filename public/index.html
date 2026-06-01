@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة استعلام جداول اختبارات المتدربين</title>
+    <!-- Google Fonts: Cairo & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Background Animated Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="app-wrapper">
+        <header class="app-header">
+            <!-- Theme Toggle -->
+            <button id="themeToggle" class="theme-btn" aria-label="تغيير المظهر">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            
+            <div class="brand">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h1>بوابة المتدربين</h1>
+                <p>الاستعلام الذكي عن مقار وجداول الاختبارات</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Search Card -->
+            <section class="glass-card search-card">
+                <h2><i class="fa-solid fa-magnifying-glass"></i> استعلام عن جدول اختبار</h2>
+                <p class="card-desc">أدخل الرقم الأكاديمي المكون من 9 أرقام للاطلاع على تفاصيل الاختبار (القاعة، رقم الجلوس، اليوم والفترة).</p>
+                
+                <div class="search-form">
+                    <div class="input-group">
+                        <i class="fa-solid fa-id-card input-icon"></i>
+                        <input type="text" id="studentId" placeholder="مثال: 444320212" autocomplete="off" dir="ltr" inputmode="numeric" maxlength="15">
+                        <label for="studentId">الرقم الأكاديمي للطلب</label>
+                        <button id="clearInput" class="clear-btn" style="display: none;">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="searchBtn" class="btn btn-primary">
+                            <span class="btn-text">🔎 بحث سريع</span>
+                            <span class="btn-loader" style="display: none;">
+                                <i class="fa-solid fa-circle-notch fa-spin"></i> جاري البحث...
+                            </span>
+                        </button>
+                        <button id="resetBtn" class="btn btn-secondary">
+                            <i class="fa-solid fa-arrow-rotate-left"></i> مسح
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Status Alerts / Feedback -->
+            <div id="statusMessage" class="status-wrapper">
+                <div class="initial-state">
+                    <div class="state-icon">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                    <h3>جاهز للاستعلام</h3>
+                    <p>يرجى إدخال الرقم الأكاديمي للمتدرب للبدء بالبحث في قاعدة البيانات.</p>
+                </div>
+            </div>
+
+            <!-- Results Section (Initially Hidden) -->
+            <section id="resultsSection" class="results-wrapper" style="display: none;">
+                <!-- Student Info Header Card -->
+                <div class="glass-card info-summary-card">
+                    <div class="student-profile">
+                        <div class="avatar">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div class="details">
+                            <h3 id="displayStudentName">اسم المتدرب</h3>
+                            <p class="student-id-badge"><i class="fa-solid fa-hashtag"></i> <span id="displayStudentId">000000000</span></p>
+                        </div>
+                    </div>
+                    <div class="stats-badge">
+                        <span id="displayCount">0</span> مقرر مسجل
+                    </div>
+                </div>
+
+                <!-- Desktop Table View -->
+                <div class="glass-card table-card desktop-only">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>المقرر</th>
+                                    <th>اسم المقرر</th>
+                                    <th>الشعبة</th>
+                                    <th>القاعة</th>
+                                    <th>رقم الجلوس</th>
+                                    <th>يوم الاختبار</th>
+                                    <th>الفترة</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Mobile Card-based View -->
+                <div class="mobile-only cards-container" id="mobileCardsContainer">
+                    <!-- Loaded dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p><i class="fa-solid fa-shield-halved"></i> الاستعلام آمن ومحمي بموجب سياسة خصوصية المتدربين</p>
+            <p class="copyright">جميع الحقوق محفوظة &copy; 2026</p>
+        </footer>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
